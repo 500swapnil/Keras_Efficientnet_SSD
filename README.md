@@ -40,7 +40,7 @@ If you want to continue training from a checkpoint set `checkpoint_filepath` and
 
 ## Pretrained Models
 
-### EfficientNetB3 SSD
+### EfficientNetB3 SSD (300 x 300)
 
 |     Class    | Average Precision |
 | :----------: |   :----------:    |
