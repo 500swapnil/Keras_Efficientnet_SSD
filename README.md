@@ -10,6 +10,10 @@ A pure Tensorflow+Keras Implementation of [SSD (Single Shot MultiBox Detector)](
 4. Efficientnet
 5. Keras 2.4.0+ (also called 2.3.0-tf)
 
+To install these dependencies, run
+```bash
+pip install -r requirements.txt
+```
 ## Test on your own images
 Add your images to the `inputs/` folder and then run
 ```bash
