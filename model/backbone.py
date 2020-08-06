@@ -43,32 +43,36 @@ def add_layer(layer_params, x, regularization=5e-4):
     x = Activation('relu')(x)
     return x
 
-def create_base_model(base_model_name, IMAGE_SIZE=[300, 300]):
+def create_base_model(base_model_name, pretrained=True, IMAGE_SIZE=[300, 300]):
+    if pretrained is False:
+        weights = None
+    else:
+        weights = "imagenet"
     if base_model_name == 'B0':
-        base = efn.EfficientNetB0(weights="imagenet", include_top=False, input_shape=[*IMAGE_SIZE, 3])
+        base = efn.EfficientNetB0(weights=weights, include_top=False, input_shape=[*IMAGE_SIZE, 3])
     elif base_model_name == 'B1':
-        base = efn.EfficientNetB1(weights="imagenet", include_top=False, input_shape=[*IMAGE_SIZE, 3])
+        base = efn.EfficientNetB1(weights=weights, include_top=False, input_shape=[*IMAGE_SIZE, 3])
     elif base_model_name == 'B2':
-        base = efn.EfficientNetB2(weights="imagenet", include_top=False, input_shape=[*IMAGE_SIZE, 3])
+        base = efn.EfficientNetB2(weights=weights, include_top=False, input_shape=[*IMAGE_SIZE, 3])
     elif base_model_name == 'B3':
-        base = efn.EfficientNetB3(weights="imagenet", include_top=False, input_shape=[*IMAGE_SIZE, 3])
+        base = efn.EfficientNetB3(weights=weights, include_top=False, input_shape=[*IMAGE_SIZE, 3])
     elif base_model_name == 'B4':
-        base = efn.EfficientNetB4(weights="imagenet", include_top=False, input_shape=[*IMAGE_SIZE, 3])
+        base = efn.EfficientNetB4(weights=weights, include_top=False, input_shape=[*IMAGE_SIZE, 3])
     elif base_model_name == 'B5':
-        base = efn.EfficientNetB5(weights="imagenet", include_top=False, input_shape=[*IMAGE_SIZE, 3])
+        base = efn.EfficientNetB5(weights=weights, include_top=False, input_shape=[*IMAGE_SIZE, 3])
     elif base_model_name == 'B6':
-        base = efn.EfficientNetB6(weights="imagenet", include_top=False, input_shape=[*IMAGE_SIZE, 3])
+        base = efn.EfficientNetB6(weights=weights, include_top=False, input_shape=[*IMAGE_SIZE, 3])
     elif base_model_name == 'B7':
-        base = efn.EfficientNetB7(weights="imagenet", include_top=False, input_shape=[*IMAGE_SIZE, 3])
+        base = efn.EfficientNetB7(weights=weights, include_top=False, input_shape=[*IMAGE_SIZE, 3])
     base = remove_dropout(base)
     base.trainable = True
     return base
 
 
 
-def create_backbone(base_model_name, IMAGE_SIZE=[300, 300], regularization=5e-4):
+def create_backbone(base_model_name, pretrained=True, IMAGE_SIZE=[300, 300], regularization=5e-4):
     source_layers = []
-    base = create_base_model(base_model_name, IMAGE_SIZE)
+    base = create_base_model(base_model_name, pretrained, IMAGE_SIZE)
     layer_names = source_layers_to_extract[base_model_name]
     for name in layer_names:
         source_layers.append(base.get_layer(name).output)

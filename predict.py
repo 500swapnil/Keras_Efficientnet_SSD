@@ -36,7 +36,7 @@ priors = generate_ssd_priors(specs, IMAGE_SIZE[0])
 target_transform = MatchPrior(priors, center_variance, size_variance, iou_threshold)
 
 print("Building SSD Model with EfficientNet{0} backbone..".format(MODEL_NAME))
-model = ssd(MODEL_NAME)
+model = ssd(MODEL_NAME, pretrained=False)
 
 print("Loading Checkpoint..")
 model.load_weights(checkpoint_filepath)
