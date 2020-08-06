@@ -10,6 +10,8 @@ from utils.post_processing import post_process
 from utils.voc_evaluation import eval_detection_voc
 from tqdm import tqdm
 from pprint import pprint
+import csv
+
 
 DATASET_DIR = './dataset'
 IMAGE_SIZE = [300, 300]
@@ -75,7 +77,7 @@ pred_labels = []
 pred_scores = []
 for batch in tqdm(validation_dataset, total=validation_steps):
     pred = model.predict_on_batch(batch)
-    predictions = post_process(pred, target_transform, confidence_threshold=0.2)
+    predictions = post_process(pred, target_transform)
     for prediction in predictions:
         boxes, scores, labels = prediction
         pred_bboxes.append(boxes)
@@ -95,3 +97,8 @@ ap_dict = dict(zip(CLASSES, answer['ap']))
 pprint(ap_dict)
 print("*"*100)
 print("Mean Average Precision:", answer['map'])
+
+w = csv.writer(open("eval.csv", "w"))
+w.writerow(["Class", "Average Precision"])
+for key, val in ap_dict.items():
+    w.writerow([key, val])
