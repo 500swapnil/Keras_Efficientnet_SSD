@@ -13,8 +13,8 @@ from preprocessing import prepare_for_prediction
 DATASET_DIR = './dataset'
 IMAGE_SIZE = [300, 300]
 BATCH_SIZE = 16
-MODEL_NAME = 'B3'
-checkpoint_filepath = './checkpoints/efficientnetb3_SSD.h5'
+MODEL_NAME = 'B0'
+checkpoint_filepath = './checkpoints/efficientnetb0_SSD.h5'
 INPUT_DIR = './inputs'
 OUTPUT_DIR = './outputs'
 

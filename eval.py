@@ -16,8 +16,8 @@ import csv
 DATASET_DIR = './dataset'
 IMAGE_SIZE = [300, 300]
 BATCH_SIZE = 16
-MODEL_NAME = 'B3'
-checkpoint_filepath = './checkpoints/efficientnetb3_SSD.h5'
+MODEL_NAME = 'B0'
+checkpoint_filepath = './checkpoints/efficientnetb0_SSD.h5'
 
 # train2012 = tfds.load('voc/2012', data_dir=DATASET_DIR, split='train')
 # valid2012 = tfds.load('voc/2012', data_dir=DATASET_DIR, split='validation')

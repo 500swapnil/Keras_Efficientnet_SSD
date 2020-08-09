@@ -19,7 +19,7 @@ Add your images to the `inputs/` folder and then run
 ```bash
 python predict.py
 ```
-A pretrained model with EfficientNetB3 backbone will load and run on all images in the `inputs/` folder. The results can be found in the `outputs/` folder.
+A pretrained model with EfficientNetB0 backbone will load and run on all images in the `inputs/` folder. The results can be found in the `outputs/` folder.
 
 ## NOTE: 
 To train or evaluate the model would require downloading the PASCAL VOC dataset and converting it into tfrecords format by `tensorflow_datasets` module. This is done automatically in `train.py` or `eval.py` but requires a considerable amount of time on the first run.
