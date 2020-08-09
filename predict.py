@@ -56,7 +56,8 @@ for i, path in enumerate(filenames):
     fig, ax = plt.subplots(1, figsize=(15, 15))
     ax.imshow(im)
     pred_boxes, pred_scores, pred_labels = predictions[i]
-    draw_bboxes(pred_boxes, ax , labels=pred_labels, color='red', IMAGE_SIZE=im.shape[:2])
+    if pred_boxes.size > 0:
+        draw_bboxes(pred_boxes, ax , labels=pred_labels, color='red', IMAGE_SIZE=im.shape[:2])
     plt.axis('off')
     plt.savefig(os.path.join(OUTPUT_DIR, 'out_'+ path), bbox_inches='tight', pad_inches=0)
     

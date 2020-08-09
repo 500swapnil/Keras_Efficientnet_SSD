@@ -40,6 +40,12 @@ If you want to continue training from a checkpoint set `checkpoint_filepath` and
 
 ## Pretrained Models
 
+|     Backbone     |   mAP    | Model Size | Download  |
+| :--------------: |:--------:| :--------: | :-------: |
+|  EfficientNet-B0 |   74.3   |   24MB    | [model](https://github.com/lufficc/SSD/releases/download/1.2/vgg_ssd300_voc0712.pth)  |
+|  EfficientNet-B3 |   76.3   |   49MB    | [model](https://github.com/lufficc/SSD/releases/download/1.2/vgg_ssd512_voc0712.pth)  |
+|  EfficientNet-B5 |   77.5   |   117MB   | [model](https://github.com/lufficc/SSD/releases/download/1.2/efficient_net_b3_ssd300_voc0712.pth) |
+
 ### EfficientNetB0 SSD (300 x 300)
 ```
 ****************************************************************************************************
@@ -94,6 +100,34 @@ Average Precisions
  'tvmonitor': 0.7443892209541666}
 ****************************************************************************************************
 Mean Average Precision: 0.762766901627628
+```
+
+### EfficientNetB5 SSD (300 x 300)
+```
+****************************************************************************************************
+Average Precisions
+{'aeroplane': 0.8402582577317493,
+ 'bicycle': 0.8611873325373057,
+ 'bird': 0.7579335634733774,
+ 'boat': 0.7394833127167081,
+ 'bottle': 0.47933192495395077,
+ 'bus': 0.8181464002356922,
+ 'car': 0.8443131628054835,
+ 'cat': 0.8799997608338624,
+ 'chair': 0.6257301589722992,
+ 'cow': 0.7870176718398668,
+ 'diningtable': 0.7662971953267264,
+ 'dog': 0.8378183820936017,
+ 'horse': 0.8493214449256444,
+ 'motorbike': 0.8534871863365513,
+ 'person': 0.8214934259604633,
+ 'pottedplant': 0.5706558290952545,
+ 'sheep': 0.7471660716329726,
+ 'sofa': 0.7908692690722835,
+ 'train': 0.8834500074371311,
+ 'tvmonitor': 0.7397631809290843}
+****************************************************************************************************
+Mean Average Precision: 0.7746861769455005
 ```
 
 ## References

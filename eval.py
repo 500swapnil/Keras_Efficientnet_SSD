@@ -51,7 +51,7 @@ target_transform = MatchPrior(priors, center_variance, size_variance, iou_thresh
 validation_dataset = prepare_dataset(test_data, IMAGE_SIZE, BATCH_SIZE, target_transform, train=False)
 
 print("Building SSD Model with EfficientNet{0} backbone..".format(MODEL_NAME))
-model = ssd(MODEL_NAME)
+model = ssd(MODEL_NAME, pretrained=False)
 
 print("Loading Checkpoint..")
 model.load_weights(checkpoint_filepath)
