@@ -56,3 +56,4 @@ jobs:
           asset_path: ../saved_models/efficientnetb5_SSD.h5
           asset_name: efficientnetb5_SSD.h5
           asset_content_type: application/binary
+

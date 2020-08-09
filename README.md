@@ -42,9 +42,9 @@ If you want to continue training from a checkpoint set `checkpoint_filepath` and
 
 |     Backbone     |   mAP    | Model Size | Download  |
 | :--------------: |:--------:| :--------: | :-------: |
-|  EfficientNet-B0 |   74.3   |   24MB    | [model](https://github.com/lufficc/SSD/releases/download/1.2/vgg_ssd300_voc0712.pth)  |
-|  EfficientNet-B3 |   76.3   |   49MB    | [model](https://github.com/lufficc/SSD/releases/download/1.2/vgg_ssd512_voc0712.pth)  |
-|  EfficientNet-B5 |   77.5   |   117MB   | [model](https://github.com/lufficc/SSD/releases/download/1.2/efficient_net_b3_ssd300_voc0712.pth) |
+|  EfficientNet-B0 |   74.3   |   24MB    | [model]  |
+|  EfficientNet-B3 |   76.3   |   49MB    | [model]  |
+|  EfficientNet-B5 |   77.5   |   117MB   | [model]  |
 
 ### EfficientNetB0 SSD (300 x 300)
 ```
