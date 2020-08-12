@@ -1,4 +1,4 @@
-# TensorflowKeras Implementation of Single Shot MultiBox Detector
+# Keras Implementation of Single Shot MultiBox Detector
 A pure Tensorflow+Keras Implementation of [SSD (Single Shot MultiBox Detector)](https://arxiv.org/abs/1512.02325) using different backbones of Efficientnet on the PASCAL_VOC dataset.
 
 ![Example of EfficientnetB3 SSD](example.jpg  "Example of EfficientnetB3 SSD")
