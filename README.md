@@ -40,11 +40,17 @@ If you want to continue training from a checkpoint set `checkpoint_filepath` and
 
 ## Pretrained Models
 
+### Original Paper
+|     Backbone     |   mAP    | Model Size |
+| :--------------: |:--------:| :--------: | 
+|      VGG16       |   77.2   |   ~200 MB  | 
+
+### In this Repo
 |     Backbone     |   mAP    | Model Size | Download weights  |
 | :--------------: |:--------:| :--------: | :-------: |
-|  EfficientNet-B0 |   74.3   |   24MB    | [model](https://github.com/500swapnil/TensorflowKeras-Efficientnet-SSD/releases/download/v1.0/efficientnetb0_SSD.h5)  |
-|  EfficientNet-B3 |   76.3   |   49MB    | [model](https://github.com/500swapnil/TensorflowKeras-Efficientnet-SSD/releases/download/v1.0/efficientnetb3_SSD.h5)  |
-|  EfficientNet-B5 |   77.5   |   117MB   | [model](https://github.com/500swapnil/TensorflowKeras-Efficientnet-SSD/releases/download/v1.0/efficientnetb5_SSD.h5)  |
+|  EfficientNet-B0 |   74.3   |   24MB    | [model](https://github.com/500swapnil/Keras_Efficientnet_SSD/releases/download/v1.0/efficientnetb0_SSD.h5)  |
+|  EfficientNet-B3 |   76.3   |   49MB    | [model](https://github.com/500swapnil/Keras_Efficientnet_SSD/releases/download/v1.0/efficientnetb3_SSD.h5)  |
+|  EfficientNet-B5 |   77.5   |   117MB   | [model](https://github.com/500swapnil/Keras_Efficientnet_SSD/releases/download/v1.0/efficientnetb5_SSD.h5)  |
 
 ### EfficientNetB0 SSD (300 x 300)
 ```
