@@ -140,7 +140,7 @@ If you find this repo useful in your work and build something interesting, do ci
 ```
 @software{swapnil_gupta_2021_4775343,
   author       = {Swapnil Gupta},
-  title        = {500swapnil/Keras\_Efficientnet\_SSD: Minor Fixes},
+  title        = {SSD implementation in Keras with EfficientNet},
   month        = may,
   year         = 2021,
   publisher    = {Zenodo},
