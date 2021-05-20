@@ -135,7 +135,20 @@ Average Precisions
 ****************************************************************************************************
 Mean Average Precision: 0.7746861769455005
 ```
-
+## Citation
+If you find this repo useful in your work and build something interesting, do cite to let me know about it!
+```
+@software{swapnil_gupta_2021_4775343,
+  author       = {Swapnil Gupta},
+  title        = {500swapnil/Keras\_Efficientnet\_SSD: Minor Fixes},
+  month        = may,
+  year         = 2021,
+  publisher    = {Zenodo},
+  version      = {1.1},
+  doi          = {10.5281/zenodo.4775343},
+  url          = {https://doi.org/10.5281/zenodo.4775343}
+}
+```
 ## References
 1. https://github.com/qfgaohao/pytorch-ssd
 2. https://github.com/lufficc/SSD
