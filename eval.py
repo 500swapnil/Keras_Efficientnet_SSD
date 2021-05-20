@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+# coding: utf-8
+
 import tensorflow_datasets as tfds
 import tensorflow as tf
 import tensorflow.keras as keras
@@ -85,11 +88,11 @@ for batch in tqdm(validation_dataset, total=validation_steps):
         pred_scores.append(scores)
 
 answer = eval_detection_voc(pred_bboxes=pred_bboxes,
-                   pred_labels=pred_labels, 
-                   pred_scores=pred_scores, 
-                   gt_bboxes=test_bboxes, 
-                   gt_labels=test_labels, 
-                   gt_difficults=test_difficults, 
+                   pred_labels=pred_labels,
+                   pred_scores=pred_scores,
+                   gt_bboxes=test_bboxes,
+                   gt_labels=test_labels,
+                   gt_difficults=test_difficults,
                    use_07_metric=True)
 print("*"*100)
 print("Average Precisions")

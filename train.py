@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+# coding: utf-8
+
 import tensorflow_datasets as tfds
 import tensorflow as tf
 import tensorflow.keras as keras
@@ -78,9 +81,9 @@ else:
     print("Training from with only base model pretrained on imagenet")
 
 
-history = model.fit(training_dataset, 
+history = model.fit(training_dataset,
                     validation_data=validation_dataset,
-                    steps_per_epoch=steps_per_epoch, 
+                    steps_per_epoch=steps_per_epoch,
                     validation_steps=validation_steps,
                     epochs=EPOCHS,
-                    callbacks=[reduce_lr,checkpoint]) 
+                    callbacks=[reduce_lr,checkpoint])

@@ -1,59 +1,89 @@
 # Keras Implementation of Single Shot MultiBox Detector
-A pure Tensorflow+Keras Implementation of [SSD (Single Shot MultiBox Detector)](https://arxiv.org/abs/1512.02325) using different backbones of Efficientnet on the PASCAL_VOC dataset.
+
+## Introduction
+
+A pure Tensorflow+Keras Implementation of [SSD (Single Shot MultiBox Detector)](https://arxiv.org/abs/1512.02325) using different backbones of Efficientnet on the `PASCAL_VOC` dataset.
 
 ![Example of EfficientnetB3 SSD](example.jpg  "Example of EfficientnetB3 SSD")
 
-## Dependencies
-1. Python 3.6+
-2. Tensorflow 2.2.0+
-3. Tensorflow_Datasets 3.0.0+
-4. Efficientnet
-5. Keras 2.4.0+ (also called 2.3.0-tf)
+## Installation & Running
 
-To install these dependencies, run
+### Installation
+
+#### Dockerized
+
 ```bash
-pip install -r requirements.txt
+docker build -t keras-single-shot .
 ```
-## Test on your own images
+
+#### Non-Dockerized
+
+```bash
+pip3 install -r requirements.txt
+```
+
+### Running (non-dockerized)
+
+#### Test on your own images
+
 Add your images to the `inputs/` folder and then run
+
 ```bash
 python predict.py
 ```
+
 A pretrained model with EfficientNetB0 backbone will load and run on all images in the `inputs/` folder. The results can be found in the `outputs/` folder.
 
-## NOTE: 
-To train or evaluate the model would require downloading the PASCAL VOC dataset and converting it into tfrecords format by `tensorflow_datasets` module. This is done automatically in `train.py` or `eval.py` but requires a considerable amount of time on the first run.
+> _Note:_ To train or evaluate the model would require downloading the PASCAL VOC dataset and converting it into tfrecords format by `tensorflow_datasets` module. This is done automatically in `train.py` or `eval.py` but requires a considerable amount of time on the first run.
 
-## Evaluate Model
+#### Evaluate Model
+
 In `eval.py`, change the `checkpoint_filepath` variable to your trained model weights and make sure the base model i.e. `MODEL_NAME` is set according to your architecture ('B0', 'B1'...etc.). Then run
+
 ```bash
 python eval.py
 ```
-PASCAL_VOC evaluation will be performed on the VOC2007 test dataset.
 
-## Train Model
+`PASCAL_VOC` evaluation will be performed on the VOC2007 test dataset.
+
+#### Train Model
+
 To train from scratch, run
+
 ```bash
 python train.py
 ```
 If you want to continue training from a checkpoint set `checkpoint_filepath` and set `base_lr` accordingly.
 
-## Pretrained Models
+### Running (dockerized)
 
-### Original Paper
-|     Backbone     |   mAP    | Model Size |
-| :--------------: |:--------:| :--------: | 
-|      VGG16       |   77.2   |   ~200 MB  | 
+Same instructions as the above section but run them inside the container just
+created.
 
-### In this Repo
-|     Backbone     |   mAP    | Model Size | Download weights  |
-| :--------------: |:--------:| :--------: | :-------: |
-|  EfficientNet-B0 |   74.3   |   24MB    | [model](https://github.com/500swapnil/Keras_Efficientnet_SSD/releases/download/v1.0/efficientnetb0_SSD.h5)  |
-|  EfficientNet-B3 |   76.3   |   49MB    | [model](https://github.com/500swapnil/Keras_Efficientnet_SSD/releases/download/v1.0/efficientnetb3_SSD.h5)  |
-|  EfficientNet-B5 |   77.5   |   117MB   | [model](https://github.com/500swapnil/Keras_Efficientnet_SSD/releases/download/v1.0/efficientnetb5_SSD.h5)  |
-
-### EfficientNetB0 SSD (300 x 300)
+```bash
+docker run --gpus=all --ipc=host -v $PWD:/app -it keras-single-shot -e RUNNER=1 [..args] # here RUNNER=0,1,2, etc depending on which script
 ```
+
+## Results & Pre-trained models
+
+- Original Paper
+
+  | Backbone |  mAP  | Model Size |
+  | :------: | :---: | :--------: |
+  |  VGG16   | 77.2  |  ~200 MB   |
+
+- In this Repo
+
+  |    Backbone     |  mAP  | Model Size |                                              Download weights                                              |
+  | :-------------: | :---: | :--------: | :--------------------------------------------------------------------------------------------------------: |
+  | EfficientNet-B0 | 74.3  |    24MB    | [model](https://github.com/500swapnil/Keras_Efficientnet_SSD/releases/download/v1.0/efficientnetb0_SSD.h5) |
+  | EfficientNet-B3 | 76.3  |    49MB    | [model](https://github.com/500swapnil/Keras_Efficientnet_SSD/releases/download/v1.0/efficientnetb3_SSD.h5) |
+  | EfficientNet-B5 | 77.5  |   117MB    | [model](https://github.com/500swapnil/Keras_Efficientnet_SSD/releases/download/v1.0/efficientnetb5_SSD.h5) |
+
+### Average Precisions
+#### EfficientNetB0 SSD (300 x 300)
+
+```js
 ****************************************************************************************************
 Average Precisions
 {'aeroplane': 0.7800157231291908,
@@ -80,8 +110,9 @@ Average Precisions
 Mean Average Precision: 0.7433163856782238
 ```
 
-### EfficientNetB3 SSD (300 x 300)
-```
+#### EfficientNetB3 SSD (300 x 300)
+
+```js
 ****************************************************************************************************
 Average Precisions
 {'aeroplane': 0.8138464069658522,
@@ -108,8 +139,8 @@ Average Precisions
 Mean Average Precision: 0.762766901627628
 ```
 
-### EfficientNetB5 SSD (300 x 300)
-```
+#### EfficientNetB5 SSD (300 x 300)
+```js
 ****************************************************************************************************
 Average Precisions
 {'aeroplane': 0.8402582577317493,

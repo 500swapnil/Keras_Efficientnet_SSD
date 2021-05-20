@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+# coding: utf-8
+
 import tensorflow_datasets as tfds
 import tensorflow as tf
 import tensorflow.keras as keras
@@ -52,7 +55,7 @@ predictions = post_process(pred, target_transform, confidence_threshold=0.4)
 # dataset = dataset.unbatch()
 print("Prediction Complete")
 for i, path in enumerate(filenames):
-    im = imread(os.path.join(INPUT_DIR, path))  
+    im = imread(os.path.join(INPUT_DIR, path))
     fig, ax = plt.subplots(1, figsize=(15, 15))
     ax.imshow(im)
     pred_boxes, pred_scores, pred_labels = predictions[i]
@@ -60,7 +63,7 @@ for i, path in enumerate(filenames):
         draw_bboxes(pred_boxes, ax , labels=pred_labels, color='red', IMAGE_SIZE=im.shape[:2])
     plt.axis('off')
     plt.savefig(os.path.join(OUTPUT_DIR, 'out_'+ path), bbox_inches='tight', pad_inches=0)
-    
+
 print("Output is saved in", OUTPUT_DIR)
 
 # reader = tf.WholeFileReader()
