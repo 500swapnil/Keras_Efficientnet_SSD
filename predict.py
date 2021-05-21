@@ -41,8 +41,8 @@ model = ssd(MODEL_NAME, pretrained=False)
 print("Loading Checkpoint..")
 model.load_weights(checkpoint_filepath)
 
-filenames = os.listdir(INPUT_DIR)
 dataset = tf.data.Dataset.list_files(INPUT_DIR + '/*', shuffle=False)
+filenames = list(dataset.as_numpy_iterator())
 dataset = dataset.map(prepare_for_prediction)
 dataset = dataset.batch(BATCH_SIZE)
 
@@ -52,14 +52,16 @@ predictions = post_process(pred, target_transform, confidence_threshold=0.4)
 # dataset = dataset.unbatch()
 print("Prediction Complete")
 for i, path in enumerate(filenames):
-    im = imread(os.path.join(INPUT_DIR, path))  
+    path_string = path.decode("utf-8")
+    im = imread(path_string)
+    filename = path_string.split('/')[-1]
     fig, ax = plt.subplots(1, figsize=(15, 15))
     ax.imshow(im)
     pred_boxes, pred_scores, pred_labels = predictions[i]
     if pred_boxes.size > 0:
         draw_bboxes(pred_boxes, ax , labels=pred_labels, color='red', IMAGE_SIZE=im.shape[:2])
     plt.axis('off')
-    plt.savefig(os.path.join(OUTPUT_DIR, 'out_'+ path), bbox_inches='tight', pad_inches=0)
+    plt.savefig(os.path.join(OUTPUT_DIR, 'out_'+ filename), bbox_inches='tight', pad_inches=0)
     
 print("Output is saved in", OUTPUT_DIR)
 

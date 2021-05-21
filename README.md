@@ -5,15 +5,15 @@ A pure Tensorflow+Keras Implementation of [SSD (Single Shot MultiBox Detector)](
 
 ## Dependencies
 1. Python 3.6+
-2. Tensorflow 2.2.0+
+2. Tensorflow 2.2.0 (For GPU, use Tensorflow-GPU 2.2.0)
 3. Tensorflow_Datasets 3.0.0+
 4. Efficientnet
-5. Keras 2.4.0+ (also called 2.3.0-tf)
 
-To install these dependencies, run
+To install these dependencies for CPU, run
 ```bash
 pip install -r requirements.txt
 ```
+(For GPU support, change line `tensorflow==2.2.0` to `tensorflow-gpu==2.2.0` in requirements.txt)
 ## Test on your own images
 Add your images to the `inputs/` folder and then run
 ```bash

@@ -1,8 +1,8 @@
-import efficientnet.keras as efn
+import efficientnet.tfkeras as efn
 import tensorflow as tf
 from tensorflow import keras
-from keras.layers import Conv2D, BatchNormalization, Activation, Dense, Concatenate, Flatten, Reshape, Dropout
-from keras.regularizers import l2
+from tensorflow.keras.layers import Conv2D, BatchNormalization, Activation, Dense, Concatenate, Flatten, Reshape, Dropout
+from tensorflow.keras.regularizers import l2
 
 source_layers_to_extract = {
     'B0': ['block3b_add', 'block5c_add', 'block7a_project_bn'],

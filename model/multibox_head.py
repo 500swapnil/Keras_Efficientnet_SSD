@@ -1,7 +1,6 @@
-from keras.layers import Conv2D, BatchNormalization, Activation, Dense, Concatenate, Flatten, Reshape, Dropout
-from keras.regularizers import l2
-from keras.engine.topology import Layer
-from keras.initializers import Constant
+from tensorflow.keras.layers import Conv2D, BatchNormalization, Activation, Dense, Concatenate, Flatten, Reshape, Dropout, Layer
+from tensorflow.keras.regularizers import l2
+from tensorflow.keras.initializers import Constant
 import tensorflow.keras.backend as K
 
 
@@ -15,8 +14,6 @@ class Normalize(Layer):
         Same as input
     # References
         http://cs.unc.edu/~wliu/papers/parsenet.pdf
-    # TODO
-        Add possibility to have one scale for all features.
     """
     def __init__(self, scale=20, **kwargs):
         self.scale = scale

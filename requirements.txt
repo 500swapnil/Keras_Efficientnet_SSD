@@ -1,5 +1,4 @@
-tensorflow-gpu>=2.2.0
-keras==2.4.0
+tensorflow==2.2.0
 matplotlib
 tensorflow_datasets>=3.0.0
 efficientnet
