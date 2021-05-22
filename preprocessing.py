@@ -27,7 +27,7 @@ def prepare_input(sample, convert_to_normal=True):
     labels = sample['objects']['label']+1
     bbox = sample['objects']['bbox']
     if convert_to_normal:
-		bbox = tf.stack([bbox[:,1], bbox[:,0], bbox[:,3], bbox[:,2]], axis=1)
+        bbox = tf.stack([bbox[:,1], bbox[:,0], bbox[:,3], bbox[:,2]], axis=1)
     
     img = preprocess_input(img, mode='torch')
     # img = tf.image.resize(img, IMAGE_SIZE) / 255.0
@@ -48,12 +48,12 @@ def prepare_dataset(dataset, image_size, batch_size, target_transform, train=Fal
     dataset = dataset.map(prepare_input, num_parallel_calls=AUTO)
     
     if train:
-		# Best practices for Keras:
-		# Training dataset: repeat then batch
-		# Evaluation dataset: do not repeat
-		dataset = dataset.shuffle(1000)
-		dataset = dataset.repeat()
-		dataset = dataset.map(data_augment, num_parallel_calls=AUTO)
+        # Best practices for Keras:
+        # Training dataset: repeat then batch
+        # Evaluation dataset: do not repeat
+        dataset = dataset.shuffle(1000)
+        dataset = dataset.repeat()
+        dataset = dataset.map(data_augment, num_parallel_calls=AUTO)
     dataset = dataset.map(lambda image, boxes, labels: join_target(image, boxes, labels, image_size, target_transform), num_parallel_calls=AUTO)
     dataset = dataset.padded_batch(batch_size)
     dataset = dataset.prefetch(AUTO)
