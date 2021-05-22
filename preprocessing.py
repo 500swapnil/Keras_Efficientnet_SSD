@@ -23,42 +23,41 @@ def data_augment(image, boxes, labels):
 
 
 def prepare_input(sample, convert_to_normal=True):
-  img = tf.cast(sample['image'], tf.float32)
-  # img = img - image_mean
-  labels = sample['objects']['label']+1
-  bbox = sample['objects']['bbox']
-  if convert_to_normal:
-    bbox = tf.stack([bbox[:,1], bbox[:,0], bbox[:,3], bbox[:,2]], axis=1)
-  
-  img = preprocess_input(img, mode='torch')
-  # img = tf.image.resize(img, IMAGE_SIZE) / 255.0
-  # img = tf.cast(img, tf.float32)
-  # img = (img - image_mean) / image_std
-  return (img, bbox, labels)
+    img = tf.cast(sample['image'], tf.float32)
+    labels = sample['objects']['label']+1
+    bbox = sample['objects']['bbox']
+    if convert_to_normal:
+		bbox = tf.stack([bbox[:,1], bbox[:,0], bbox[:,3], bbox[:,2]], axis=1)
+    
+    img = preprocess_input(img, mode='torch')
+    # img = tf.image.resize(img, IMAGE_SIZE) / 255.0
+    # img = tf.cast(img, tf.float32)
+    # img = (img - image_mean) / image_std
+    return (img, bbox, labels)
 
 
 def join_target(image, bbox, labels, image_size, target_transform):
-  locations, labels = target_transform(tf.cast(bbox, tf.float32), labels)
-  labels = tf.one_hot(labels, 21, axis=1, dtype=tf.float32)
-  targets = tf.concat([labels, locations], axis=1)
-  return (tf.image.resize(image, image_size), targets)
+    locations, labels = target_transform(tf.cast(bbox, tf.float32), labels)
+    labels = tf.one_hot(labels, 21, axis=1, dtype=tf.float32)
+    targets = tf.concat([labels, locations], axis=1)
+    return (tf.image.resize(image, image_size), targets)
 
 
 def prepare_dataset(dataset, image_size, batch_size, target_transform, train=False):
-  # dataset = dataset.cache() # This dataset fits in RAM
-  dataset = dataset.map(prepare_input, num_parallel_calls=AUTO)
-  
-  if train:
-    # Best practices for Keras:
-    # Training dataset: repeat then batch
-    # Evaluation dataset: do not repeat
-    dataset = dataset.shuffle(1000)
-    dataset = dataset.repeat()
-    dataset = dataset.map(data_augment, num_parallel_calls=AUTO)
-  dataset = dataset.map(lambda image, boxes, labels: join_target(image, boxes, labels, image_size, target_transform), num_parallel_calls=AUTO)
-  dataset = dataset.padded_batch(batch_size)
-  dataset = dataset.prefetch(AUTO)
-  return dataset
+    # dataset = dataset.cache() # This dataset fits in RAM
+    dataset = dataset.map(prepare_input, num_parallel_calls=AUTO)
+    
+    if train:
+		# Best practices for Keras:
+		# Training dataset: repeat then batch
+		# Evaluation dataset: do not repeat
+		dataset = dataset.shuffle(1000)
+		dataset = dataset.repeat()
+		dataset = dataset.map(data_augment, num_parallel_calls=AUTO)
+    dataset = dataset.map(lambda image, boxes, labels: join_target(image, boxes, labels, image_size, target_transform), num_parallel_calls=AUTO)
+    dataset = dataset.padded_batch(batch_size)
+    dataset = dataset.prefetch(AUTO)
+    return dataset
 
 
 def prepare_for_prediction(file_path, image_size=[300, 300]):

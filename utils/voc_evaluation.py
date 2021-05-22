@@ -1,6 +1,4 @@
-#@title Evaluation
-from __future__ import division
-
+# Evalutation code from https://github.com/chainer/chainercv
 from collections import defaultdict
 import itertools
 import numpy as np

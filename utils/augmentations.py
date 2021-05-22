@@ -90,24 +90,24 @@ def get_indices_from_slice(top, left, height, width):
 
 @tf.function
 def expand(image, boxes, expand_prob = tf.constant(0.5)):
-      if tf.random.uniform([]) > expand_prob:
-          return image, boxes
+    if tf.random.uniform([]) > expand_prob:
+        return image, boxes
 
-      image_shape = tf.cast(tf.shape(image), tf.float32)
-      ratio = tf.random.uniform([], 1, 4)
-      left = tf.math.round(tf.random.uniform([], 0, image_shape[1]*ratio - image_shape[1]))
-      top = tf.math.round(tf.random.uniform([], 0, image_shape[0]*ratio - image_shape[0]))
-      new_height = tf.math.round(image_shape[0]*ratio)
-      new_width = tf.math.round(image_shape[1]*ratio)
-      expand_image = tf.zeros(( new_height, new_width , image_shape[2]), dtype=tf.float32)
-      indices = get_indices_from_slice(int(top), int(left), int(image_shape[0]), int(image_shape[1]))
-      expand_image = tf.tensor_scatter_nd_update(expand_image, indices, tf.reshape(image, [-1,3]))
+    image_shape = tf.cast(tf.shape(image), tf.float32)
+    ratio = tf.random.uniform([], 1, 4)
+    left = tf.math.round(tf.random.uniform([], 0, image_shape[1]*ratio - image_shape[1]))
+    top = tf.math.round(tf.random.uniform([], 0, image_shape[0]*ratio - image_shape[0]))
+    new_height = tf.math.round(image_shape[0]*ratio)
+    new_width = tf.math.round(image_shape[1]*ratio)
+    expand_image = tf.zeros(( new_height, new_width , image_shape[2]), dtype=tf.float32)
+    indices = get_indices_from_slice(int(top), int(left), int(image_shape[0]), int(image_shape[1]))
+    expand_image = tf.tensor_scatter_nd_update(expand_image, indices, tf.reshape(image, [-1,3]))
 
-      image = expand_image
-      xmin = (boxes[:,0] * image_shape[1] + left) / new_width
-      ymin = (boxes[:,1] * image_shape[0] + top) / new_height
-      xmax = (boxes[:,2] * image_shape[1] + left) / new_width
-      ymax = (boxes[:,3] * image_shape[0] + top) / new_height
+    image = expand_image
+    xmin = (boxes[:,0] * image_shape[1] + left) / new_width
+    ymin = (boxes[:,1] * image_shape[0] + top) / new_height
+    xmax = (boxes[:,2] * image_shape[1] + left) / new_width
+    ymax = (boxes[:,3] * image_shape[0] + top) / new_height
 
-      boxes = tf.stack([xmin, ymin, xmax, ymax], axis=1)
-      return image, boxes
+    boxes = tf.stack([xmin, ymin, xmax, ymax], axis=1)
+    return image, boxes
